@@ -2,6 +2,10 @@ package cn.lastwhisper.project.exception;
 
 import cn.lastwhisper.project.enums.ResultEnum;
 
+/**
+ * @author cunchang
+ * @date 2020/5/19
+ */
 public class BizException extends RuntimeException {
 
     private Integer code;

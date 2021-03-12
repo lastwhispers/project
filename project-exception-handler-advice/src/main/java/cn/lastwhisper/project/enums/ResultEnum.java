@@ -9,13 +9,11 @@ public enum ResultEnum {
 
     SUCCESS(0, "success"),
 
-    UNKNOWN_ERROR(1, "未知异常"),
+    UNKNOWN_ERROR(10001, "未知异常"),
+    PARAM_ERROR(10002, "参数错误"),
+    URL_ROUTE_ERROR(10003, "url绑定路由问题"),
+    NOT_ROUTE_ERROR(10004, "没有找到对应的访问路径"),
 
-    PARAM_ERROR(2, "参数错误"),
-
-    USER_NOT_EXIST(3,"用户不存在"),
-
-    PASSWORD_ERROR(4, "密码错误"),
 
     ;
 

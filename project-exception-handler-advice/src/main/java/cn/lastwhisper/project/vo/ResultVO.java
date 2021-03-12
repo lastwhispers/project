@@ -33,6 +33,20 @@ public class ResultVO<T> implements Serializable {
         this.data = data;
     }
 
+    public static ResultVO create(ResultEnum resultEnum) {
+        ResultVO<?> resultVO = new ResultVO<>();
+        resultVO.setCode(resultEnum.getCode());
+        resultVO.setMsg(resultEnum.getMsg());
+        return resultVO;
+    }
+
+    public static ResultVO create(Integer code, String msg) {
+        ResultVO<?> resultVO = new ResultVO<>();
+        resultVO.setCode(code);
+        resultVO.setMsg(msg);
+        return resultVO;
+    }
+
     public Integer getCode() {
         return code;
     }
