@@ -3,6 +3,8 @@ package cn.lastwhisper.project.common;
 import cn.lastwhisper.project.enums.ResultEnum;
 import cn.lastwhisper.project.exception.BizException;
 import cn.lastwhisper.project.vo.ResultVO;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.ServletRequestBindingException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -22,6 +24,7 @@ import javax.servlet.http.HttpServletResponse;
 @ControllerAdvice
 public class GlobalExceptionResolver {
 
+    private Logger logger = LoggerFactory.getLogger(getClass());
 
     /**
      * 处理所有业务内和业务外未知异常
@@ -48,6 +51,8 @@ public class GlobalExceptionResolver {
             code = ResultEnum.NOT_ROUTE_ERROR.getCode();
             msg = ResultEnum.NOT_ROUTE_ERROR.getMsg();
         } else {
+            logger.error("nuknown error", e);
+            // TODO 未知的异常，应该格外注意，可以发送邮件通知等
             // http://localhost:8080/user/login?id=10
             code = ResultEnum.UNKNOWN_ERROR.getCode();
             msg = ResultEnum.UNKNOWN_ERROR.getMsg();

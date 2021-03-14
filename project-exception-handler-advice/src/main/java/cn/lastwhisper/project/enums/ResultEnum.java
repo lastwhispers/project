@@ -11,7 +11,7 @@ public enum ResultEnum {
 
     UNKNOWN_ERROR(10001, "未知异常"),
     PARAM_ERROR(10002, "参数错误"),
-    URL_ROUTE_ERROR(10003, "url绑定路由问题"),
+    URL_ROUTE_ERROR(10003, "url路由参数绑定错误"),
     NOT_ROUTE_ERROR(10004, "没有找到对应的访问路径"),
 
 

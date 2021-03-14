@@ -7,122 +7,22 @@
 对于`SpringMVC`内，业务代码外的异常也可以处理。   
 比如，web 接口参数类型错误，代码还未执行到接口方法 ，但是异常会被抛到`@ExceptionHandler`。
 
-Interceptor 打印参数等日志
-
 
 # 2. 测试
 
-内置用户：admin/123456
+## 2.1 BizException
 
-不存在用户：unkonw/123456
+http://localhost:8080/user/login?id
 
-## 2.1 success
+## 2.2 ServletRequestBindingException
 
-http://localhost:8080/user/login?username=admin&password=123456
+http://localhost:8080/user/login
 
-```json
-{
-  "code": 0,
-  "msg": "success",
-  "data": "admin"
-}
-```
+## 2.3 NoHandlerFoundException
 
-## 2.2 参数错误
+http://localhost:8080/
 
-http://localhost:8080/user/login?username=&password=123456
+## 2.4 其他Exception
 
-```json
-{
-  "code": 2,
-  "msg": "用户名为空",
-  "data": null
-}
-```
-
-http://localhost:8080/user/login?username=admin&password=
-
-```json
-{
-  "code": 2,
-  "msg": "密码为空",
-  "data": null
-}
-```
-
-## 2.3 用户不存在
-
-http://localhost:8080/user/login?username=unkonw&password=123456
-
-密码可以随便写
-
-```json
-{
-  "code": 3,
-  "msg": "用户不存在",
-  "data": null
-}
-```
-
-## 2.4 密码错误
-
-http://localhost:8080/user/login?username=admin&password=root
-
-```json
-{
-  "code": 4,
-  "msg": "密码错误",
-  "data": null
-}
-```
-
-## 2.5 业务内的未知异常
-
-http://localhost:8080/user/1
-
-```json
-{
-  "code": 0,
-  "msg": "success",
-  "data": {
-    "id": 1,
-    "username": "admin",
-    "password": "123456",
-    "phone": "15037594395",
-    "address": "河南平顶山"
-  }
-}
-```
-
-http://localhost:8080/user/2
-
-在日志中可以看到`java.lang.ArithmeticException: / by zero`
-
-```json
-{
-  "code": 1,
-  "msg": "/ by zero",
-  "data": null
-}
-```
-
-## 2.6 业务外的未知异常
-
-http://localhost:8080/user/啦啦啦啦
-
-在日志中可以看到`Failed to convert value of type 'java.lang.String' to required type 'java.lang.Long'; 
-nested exception is java.lang.NumberFormatException: For input string: "啦啦啦啦"`  
-
-```json
-{
-  "code": 1,
-  "msg": "Failed to convert value of type 'java.lang.String' to required type 'java.lang.Long'; nested exception is java.lang.NumberFormatException: For input string: \"啦啦啦啦\"",
-  "data": null
-}
-```
-
-
-# 参考文章
-
-- 程序员你为什么这么累：https://xwjie.github.io/rule/aop.html
+http://localhost:8080/user/login?id=10
 
